@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename resource &apos;14_DonwLoadDemo/WebContent/download/Desktop.zip&apos; to &apos;压缩包.zip&apos;" description="Rename resource &apos;Desktop.zip&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="WebContent/download/Desktop.zip" name="压缩包.zip" stamp="1532571478048" updateReferences="true"/>
+</session>

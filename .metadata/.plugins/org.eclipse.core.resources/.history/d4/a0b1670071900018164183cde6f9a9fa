@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h4>tomcat的默认servlet去提供下载</h4>
+	<a href="download/a.png">a.png</a><br/>
+	<a href="download/b.txt">b.txt</a><br/>
+	<a href="download/Desktop.zip">Desktop.zip</a><br/>
+	
+	<h4>tomcat的默认servlet去提供下载</h4>
+	<a href="download/a.png">a.png</a><br/>
+	<a href="download/b.txt">b.txt</a><br/>
+	<a href="download/Desktop.zip">Desktop.zip</a><br/>
+</body>
+</html>

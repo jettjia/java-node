@@ -1,0 +1,11 @@
+package com.jettjia.DonwLoadUtil;
+
+import sun.misc.BASE64Encoder;
+
+public class DownLoadUtil {
+	public static String base64EncodeFileName(String fileName) {
+		BASE64Encoder base64Encoder = new BASE64Encoder();
+		return "=?UTF-8?B?" + (new String(base64Encoder.encodeBase64(fileName.getBytes("UTF-8")))) + "?=";
+		return null;
+	}
+}
