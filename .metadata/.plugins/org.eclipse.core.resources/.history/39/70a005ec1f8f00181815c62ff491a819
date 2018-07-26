@@ -1,7 +1,0 @@
-package com.jettjia.servlet;
-
-import com.sun.net.httpserver.HttpServer;
-
-public class HelloServlet02 extends HttpServer{
-
-}

@@ -1,8 +1,0 @@
-package com.jettjia.DonwLoadUtil;
-
-public class DownLoadUtil {
-	public static String base64EncodeFileName() {
-		return null;
-		
-	}
-}

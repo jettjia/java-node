@@ -1,9 +1,0 @@
-package com.jettjia.DonwLoadUtil;
-
-
-public class DownLoadUtil {
-	public static String base64EncodeFileName(String fileName) {
-		return "=?UTF-8?B?" + (new String(Base64.encodeBase64(fileName.getBytes("UTF-8")))) + "?=";
-		return null;
-	}
-}
