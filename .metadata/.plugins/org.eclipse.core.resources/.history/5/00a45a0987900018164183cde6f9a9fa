@@ -1,0 +1,34 @@
+package com.jettjia.servlet;
+
+import java.io.IOException;
+import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import com.jettjia.util.CookieUtil;
+
+public class Demo02 extends HttpServlet {
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		response.setContentType("text/html;charset=utf-8");
+		String username = request.getParameter("username");
+		String password = request.getParameter("password");
+		
+		if ("admin".equals(username) && "123".equals(password)) {
+			// 获得客户端返回的cookie
+			Cookie[] cookies = request.getCookies();
+			// 从数组里，找出记录登陆时间的cookie
+			CookieUtil.findCookie(cookies, username);
+		}
+		
+		
+		response.getWriter().write(username+ " " + password);
+	}
+	
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		doGet(request, response);
+	}
+
+}
