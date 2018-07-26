@@ -1,0 +1,3 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">&#x0A;<refactoring comment="Rename resource &apos;14_ServletContext/WebContent/File&apos; to &apos;fil&apos;" description="Rename resource &apos;File&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="WebContent/File" name="fil" stamp="1532496459065" updateReferences="true"/>&#x0A;<refactoring comment="Rename resource &apos;14_ServletContext/WebContent/fil&apos; to &apos;file&apos;" description="Rename resource &apos;fil&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="WebContent/fil" name="file" stamp="1532496463726" updateReferences="true"/>
+</session>

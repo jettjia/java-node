@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>登录页面</title>
+</head>
+<body>
+	<!-- 	
+	Servlet的路径
+		http://localhost:8080/14_ServletContext/login
+	
+	当前这个html的路径：
+		http://localhost:8080//14_ServletContext/login.html -->
+	<form action="login" method="get">
+		账号:<input type="text" name="username"/><br>
+		密码:<input type="text" name="password"/><br>
+		<input type="submit" value="登录"/>
+	</form>
+</body>
+</html>

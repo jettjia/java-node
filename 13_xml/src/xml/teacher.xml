@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<teachers xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://www.example.org/teacher"
+	xsi:schemaLocation="http://www.example.org/teacher teacher.xsd">
+	<teacher>
+            <name>zhangsan</name>
+            <age>19</age>
+        </teacher>
+        <teacher>
+            <name>lisi</name>
+            <age>29</age>
+        </teacher>
+        <teacher>
+            <name>lisi</name>
+            <age>29</age>
+        </teacher>
+</teachers>
