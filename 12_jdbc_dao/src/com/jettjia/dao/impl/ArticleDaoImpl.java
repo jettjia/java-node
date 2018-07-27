@@ -17,13 +17,13 @@ public class ArticleDaoImpl implements ArticleDao {
 		Statement st = null;
 		ResultSet rs = null;
 		try {
-			// 1 »ñÈ¡Á¬½Ó¶ÔÏó
+			// 1 ï¿½ï¿½È¡ï¿½ï¿½ï¿½Ó¶ï¿½ï¿½ï¿½
 			conn = JDBCUtil.getConn();
-			// 2 ´´½¨statement¶ÔÏó
+			// 2 ï¿½ï¿½ï¿½ï¿½statementï¿½ï¿½ï¿½ï¿½
 			st = conn.createStatement();
-			// 3 Ö´ÐÐsql
+			// 3 Ö´ï¿½ï¿½sql
 			rs = st.executeQuery("select id, title from j_article");
-			// 4 ±éÀú½á¹û¼¯
+			// 4 ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 			while(rs.next()) {
 				System.out.println(rs.getInt("id") + rs.getString("title"));
 			}
@@ -46,9 +46,9 @@ public class ArticleDaoImpl implements ArticleDao {
 			ps.setInt(2, id);
 			int rs = ps.executeUpdate();
 			if (rs > 0) {
-				System.out.println("ÐÞ¸Ä³É¹¦");
+				System.out.println("ï¿½Þ¸Ä³É¹ï¿½");
 			} else {
-				System.out.println("ÐÞ¸ÄÊ§°Ü");
+				System.out.println("ï¿½Þ¸ï¿½Ê§ï¿½ï¿½");
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
