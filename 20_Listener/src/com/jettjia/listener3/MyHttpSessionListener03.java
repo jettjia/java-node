@@ -46,5 +46,4 @@ public class MyHttpSessionListener03 implements HttpSessionActivationListener,Se
 	public void setName(String name) {
 		this.name = name;
 	}
-
 }
