@@ -8,5 +8,11 @@
         http://www.springframework.org/schema/context/spring-context.xsd">
 	<!-- Spring的IOC的注解入门 -->
 	<!-- 配置组件扫描，哪些包下的类使用IOC的注解 -->
-	<context:component-scan base-package="com.jettjia.spring.demo1"></context:component-scan>
+	<!-- <context:component-scan base-package="com.jettjia.spring" /> -->
+	
+	<!-- 在没有扫描的情况下，使用属性注入的注解：@Resource,@Value,@Autowired,@Qulifier -->
+	<context:annotation-config />
+	<bean id="productService" class="com.jettjia.spring.demo3.ProductService"></bean>
+	<bean id="productDao" class="com.jettjia.spring.demo3.ProductDao"></bean>
+	<bean id="orderDao" class="com.jettjia.spring.demo3.OrderDao"></bean>
 </beans>
