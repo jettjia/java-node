@@ -50,7 +50,7 @@
 	<bean id="employee" class="com.jettjia.spring.demo4.Employee" p:name="大张张" p:car2-ref="car2"></bean> -->
 	
 	<!-- SpEL的属性注入 -->
-	<bean id="carInfo" class="com.jettjia.spring.demo4.CarInfo">
+	<!-- <bean id="carInfo" class="com.jettjia.spring.demo4.CarInfo">
 	</bean>
 	
 	<bean id="car2" class="com.jettjia.spring.demo4.Car2">
@@ -61,5 +61,43 @@
 	<bean id="employee" class="com.jettjia.spring.demo4.Employee">
 		<property name="name" value="#{'赵'}"></property>
 		<property name="car2" value="#{car2}"></property>
+	</bean> -->
+	
+	<!-- Spring的集合属性的注入-->
+	<bean id="collectionBean" class="com.jettjia.spring.demo5.CollectionBean">
+		<!-- 数组类型 -->
+		<property name="arrs">
+			<list>
+				<value>张三</value>
+				<value>李四</value>
+				<value>王五</value>
+			</list>
+		</property>
+		
+		<!-- 注入list集合 -->
+		<property name="list">
+			<list>
+				<value>张三三</value>
+				<value>李四四</value>
+			</list>
+		</property>
+		
+		<!-- 注入set集合 -->
+		<property name="set">
+			<set>
+				<value>a</value>
+				<value>b</value>
+				<value>c</value>
+			</set>
+		</property>
+		
+		<!-- 注入map集合 -->
+		<property name="map">
+			<map>
+				<entry key="aa" value="a1"></entry>
+				<entry key="bb" value="b1"></entry>
+				<entry key="cc" value="c1"></entry>
+			</map>
+		</property>
 	</bean>
 </beans>
