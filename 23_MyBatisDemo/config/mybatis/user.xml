@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="user">
+    <select id="getUserById" parameterType="int" resultType="com.jettjia.mybatis.pojo.User" >
+        select * from user where id = #{id1}
+    </select>
+    
+    <select id="getUserByUserName" parameterType="string" resultType="com.jettjia.mybatis.pojo.User">
+        select * from user where username like #{name}
+       <!--  select * from user where username like '%${value}%' -->
+    </select>    
+</mapper>
