@@ -9,7 +9,26 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     </select>
     
     <select id="getUserByUserName" parameterType="string" resultType="com.jettjia.mybatis.pojo.User">
-        select * from user where username like #{name}
-       <!--  select * from user where username like '%${value}%' -->
-    </select>    
+        <!-- select * from user where username like #{name} -->
+       select * from user where username like '%${value}%'
+    </select>
+    
+    <insert id="insertUser" parameterType="com.jettjia.mybatis.pojo.User" useGeneratedKeys="true" keyProperty="id">
+        insert into user(username, birthday, sex, address) values(#{username}, #{birthday}, #{sex}, #{address})
+    </insert>
+    
+    <insert id="insertUserUUID" parameterType="com.jettjia.mybatis.pojo.User">
+        <selectKey keyProperty="uuid2" resultType="string" order="BEFORE">
+            SELECT UUID()
+        </selectKey>
+        insert into user(username, birthday, sex, address, uuid2) values(#{username}, #{birthday}, #{sex}, #{address}, #{uuid2})
+    </insert>
+    
+    <update id="updateUser" parameterType="com.jettjia.mybatis.pojo.User">
+        update user set username = #{username} where id = #{id}
+    </update>
+    
+    <delete id="deleteUser" parameterType="int">
+        delete from user where id = #{id}
+    </delete>
 </mapper>

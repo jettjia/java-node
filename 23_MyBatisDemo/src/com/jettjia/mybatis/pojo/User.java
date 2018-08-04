@@ -8,6 +8,7 @@ public class User {
     private String sex;// 性别
     private Date birthday;// 生日
     private String address;// 地址
+    private String uuid2;
 
     public Integer getId() {
         return id;
@@ -15,6 +16,14 @@ public class User {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+    
+    public String getUuid2() {
+        return uuid2;
+    }
+
+    public void setUuid2(String uuid2) {
+        this.uuid2 = uuid2;
     }
 
     public String getUsername() {
@@ -52,7 +61,8 @@ public class User {
     @Override
     public String toString() {
         return "User [id=" + id + ", username=" + username + ", sex=" + sex + ", birthday=" + birthday + ", address="
-                + address + "]";
+                + address + ", uuid2=" + uuid2 + "]";
     }
-
+    
+    
 }
