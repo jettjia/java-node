@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.jettjia.mybatis.mapper.UserMapper">
+    <!-- sql片段的抽取，定义 -->
+    <sql id="user_sql">
+        `id`, `username`, `birthday`, `sex`, `address`
+    </sql>
+    
+    <select id="getUserById" parameterType="int" resultType="user" >
+        select <include refid="user_sql" /> from user where id = #{id1}
+    </select>
+    
+    <select id="getUserByUserName" parameterType="string" resultType="com.jettjia.mybatis.pojo.User">
+       select <include refid="user_sql" /> from user where username like '%${value}%'
+    </select>
+    
+    <insert id="insertUser" parameterType="com.jettjia.mybatis.pojo.User" useGeneratedKeys="true" keyProperty="id">
+        insert into user(username, birthday, sex, address) values(#{username}, #{birthday}, #{sex}, #{address})
+    </insert>
+    
+    <select id="getUserByQueryVo" parameterType="queryvo" resultType="com.jettjia.mybatis.pojo.User">
+       select <include refid="user_sql" /> from user where username like '%${user.username}%'
+    </select>
+    
+    <select id="getUserCount" resultType="int">
+        select count(*) from user;
+    </select>
+    
+    <!-- 动态sql演示============================= -->
+    <select id="getUserByPojo" parameterType="user" resultType="com.jettjia.mybatis.pojo.User">
+        <!-- 方式1 -->
+        <!-- select id, username, birthday, sex, address from user
+        where 1=1
+        <if test="username != null and username !=''">
+            and username like '%${username}%'
+        </if>
+        <if test="sex != null and sex !=''">
+            and sex=#{sex}
+        </if> -->
+        
+        <!-- 方式2-where -->
+        select <include refid="user_sql" /> from user
+        <where>
+            <if test="username != null and username !=''">
+                and username like '%${username}%'
+            </if>
+            <if test="sex != null and sex !=''">
+                and sex=#{sex}
+            </if>
+        </where>
+    </select>
+    
+    <select id="getUserByIds" parameterType="user" resultType="com.jettjia.mybatis.pojo.User">
+        select <include refid="user_sql" /> from user
+        <where>
+            <foreach collection="ids" item="item" open="id in (" close=")" separator=",">
+                #{item}
+            </foreach>
+        </where>
+    </select>
+    
+    <!-- 用户所有订单 一对多=========================== -->
+    <resultMap type="user" id="user_order_map">
+        <id property="id" column="id"/>
+        <result property="username" column="username" />
+        <result property="address" column="address" />
+        <result property="birthday" column="birthday" />
+        <result property="sex" column="sex" />
+        
+        <collection property="orders" ofType="com.jettjia.mybatis.pojo.Order">
+            <id property="id" column="oid"/>
+            <result property="userId" column="id"/>
+            <result property="number" column="number"/>
+            <result property="createtime" column="createtime"/>
+            <result property="note" column="note"/>
+        </collection>
+    </resultMap>
+    <select id="getUserOrderMap" resultMap="user_order_map">
+        SELECT u.`id`, u.`username`, u.`birthday`, u.`sex`, u.`address`, u.`uuid2`,
+        o.`id` oid, o.`number`, o.`createtime`, o.`note`
+        FROM `user` u
+        LEFT JOIN `order` o
+        ON o.`user_id` = u.`id`
+    </select>
+</mapper>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+    <!-- 先加载内部标签，再加载外部文件，名称一致时，会替换内容 -->
+    <properties resource="jdbc.properties">
+    </properties>
+    
+    <typeAliases>
+        <package name="com.jettjia.mybatis.pojo"/>
+    </typeAliases>
+    
+    <!-- 和spring整合后 environments配置将废除 -->
+    <environments default="development">
+        <environment id="development">
+            <!-- 使用jdbc事务管理 -->
+            <transactionManager type="JDBC" />
+            <!-- 数据库连接池 -->
+            <dataSource type="POOLED">
+                <property name="driver" value="${jdbc.driver}" />
+                <property name="url" value="${jdbc.url}" />
+                <property name="username" value="${jdbc.username}" />
+                <property name="password" value="${jdbc.password}" />
+            </dataSource>
+        </environment>
+    </environments>
+    
+    <!-- 加载映射文件 -->
+    <mappers>
+        
+        <!-- 映射文件包扫描，推荐方式：
+             1、接口文件必须与映射文件同一目录下
+             2、接口文件名称必须与映射文件的名称一致 -->
+        <package name="com.jettjia.mybatis.mapper"/>
+    </mappers>
+</configuration>
