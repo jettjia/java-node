@@ -11,7 +11,7 @@
 </head>
 <body>
 	<span>${msg}</span>
-	<form id="itemForm" action="${pageContext.request.contextPath }/updateItem.action" method="post">
+	<form id="itemForm" action="${pageContext.request.contextPath }/updateItem.action" method="post" enctype="multipart/form-data">
 		<input type="hidden" name="id" value="${item.id }" /> 修改商品信息：
 		<table width="100%" border=1>
 			<tr>
@@ -30,6 +30,15 @@
 				<td>商品简介</td>
 				<td><textarea rows="3" cols="30" name="detail">${item.detail }</textarea>
 				</td>
+			</tr>
+			<tr>
+			     <td>商品图片</td>
+			     <td>
+			         <c:if test="${item.pic != null }">
+			             <img src="/pic/${item.pic }" width="100" height="100"/>
+			         </c:if>
+			         <input type="file" name="pictureFile"/>
+			     </td>
 			</tr>
 			<tr>
 				<td colspan="2" align="center"><input type="submit" value="提交" />
