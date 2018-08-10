@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -35,12 +36,12 @@ public class ItemController {
      */
     @RequestMapping("itemList")
     public ModelAndView itemList() {
-        System.out.println("sss");
         ModelAndView mav = new ModelAndView();
         // 获取商品列表
         List<Item> itemList = itemService.getItemList();
         mav.addObject("itemList", itemList);
         mav.setViewName("itemList");
+        System.out.println("ItemController.itemList is run");
         return mav;
     }
 
@@ -185,6 +186,19 @@ public class ItemController {
      */
     @RequestMapping("testJson")
     public @ResponseBody Item testJson(@RequestBody Item item) {
+        return item;
+    }
+    
+    /**
+     * Restful风格开发接口，实现根据id查询商品
+     * @param id
+     * @param model
+     * @return
+     */
+    @RequestMapping("item/{id}")
+    @ResponseBody
+    public Item itemQuery(@PathVariable("id") Integer id) {
+        Item item = itemService.getItemById(id);
         return item;
     }
 }

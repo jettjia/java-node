@@ -1,0 +1,6 @@
+0:0:0:0:0:0:0:1 - - [09/Aug/2018:12:08:44 +0800] "GET /maven-struts2/helloaction HTTP/1.1" 404 - http-bio-8080-exec-1 0
+0:0:0:0:0:0:0:1 - - [09/Aug/2018:12:08:48 +0800] "GET /maven-struts2 HTTP/1.1" 404 - http-bio-8080-exec-3 0
+0:0:0:0:0:0:0:1 - - [09/Aug/2018:12:10:18 +0800] "GET /maven-struts2/helloAction HTTP/1.1" 404 - http-bio-8080-exec-5 0
+0:0:0:0:0:0:0:1 - - [09/Aug/2018:12:13:20 +0800] "GET /maven-struts2/helloAction HTTP/1.1" 404 - http-bio-8080-exec-8 0
+0:0:0:0:0:0:0:1 - - [09/Aug/2018:12:15:31 +0800] "GET /maven-struts2/helloAction HTTP/1.1" 200 285 http-bio-8081-exec-1 1050
+0:0:0:0:0:0:0:1 - - [09/Aug/2018:12:15:31 +0800] "GET /favicon.ico HTTP/1.1" 404 - http-bio-8081-exec-3 0
