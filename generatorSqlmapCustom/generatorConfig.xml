@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+  PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+  "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+    <context id="testTables" targetRuntime="MyBatis3">
+        
+        <!-- 1.配置数据库的地址和驱动 -->
+        <!-- mysql-数据库连接的信息 -->
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+            connectionURL="jdbc:mysql://10.0.0.150:3306/taotao" userId="jett"
+            password="123456">
+        </jdbcConnection>
+
+        <!-- 2.配置mapper包的路径 -->
+        <!-- targetProject:生成PO类的位置 -->
+        <javaModelGenerator targetPackage="com.taotao.pojo"
+            targetProject=".\src">
+            <!-- enableSubPackages:是否让schema作为包的后缀 -->
+            <property name="enableSubPackages" value="false" />
+            <!-- 从数据库返回的值被清理前后的空格 -->
+            <property name="trimStrings" value="true" />
+        </javaModelGenerator>
+        
+        <!-- 3.配置mapper包的路径 -->
+        <!-- targetProject:mapper映射文件生成的位置 -->
+        <sqlMapGenerator targetPackage="com.taotao.mapper"
+            targetProject=".\src">
+            <!-- enableSubPackages:是否让schema作为包的后缀 -->
+            <property name="enableSubPackages" value="false" />
+        </sqlMapGenerator>
+        <!-- targetPackage：mapper接口生成的位置 -->
+        <javaClientGenerator type="XMLMAPPER"
+            targetPackage="com.taotao.mapper"
+            targetProject=".\src">
+            <!-- enableSubPackages:是否让schema作为包的后缀 -->
+            <property name="enableSubPackages" value="false" />
+        </javaClientGenerator>
+        
+        <!-- 4.指定数据库表 -->
+        <table schema="" tableName="tb_content"></table>
+        <table schema="" tableName="tb_content_category"></table>
+        <table schema="" tableName="tb_item"></table>
+        <table schema="" tableName="tb_item_cat"></table>
+        <table schema="" tableName="tb_item_desc"></table>
+        <table schema="" tableName="tb_item_param"></table>
+        <table schema="" tableName="tb_item_param_item"></table>
+        <table schema="" tableName="tb_order"></table>
+        <table schema="" tableName="tb_order_item"></table>
+        <table schema="" tableName="tb_order_shopping"></table>
+        <table schema="" tableName="tb_user"></table>
+    </context>
+</generatorConfiguration>
