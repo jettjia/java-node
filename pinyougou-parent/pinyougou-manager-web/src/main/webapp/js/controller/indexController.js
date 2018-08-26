@@ -1,0 +1,13 @@
+ //控制层 
+app.controller('indexController' ,function($scope,$controller,loginService){	
+	
+	// 读取当前登录人
+	$scope.showLoginName=function(id){				
+		loginService.loginName().success(
+			function(response){
+				$scope.loginName= response.loginName;					
+			}
+		);				
+	}
+    
+});	
