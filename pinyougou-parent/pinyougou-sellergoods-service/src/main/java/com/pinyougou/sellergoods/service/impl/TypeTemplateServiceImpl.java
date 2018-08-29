@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
+
 import com.alibaba.dubbo.config.annotation.Service;
 import com.alibaba.fastjson.JSON;
 import com.github.pagehelper.Page;
@@ -30,9 +32,6 @@ public class TypeTemplateServiceImpl implements TypeTemplateService {
 
     @Autowired
     private TbTypeTemplateMapper typeTemplateMapper;
-    
-    @Autowired
-    private TbSpecificationOptionMapper specificationOptionMapper;
 
     /**
      * 查询全部
@@ -113,35 +112,65 @@ public class TypeTemplateServiceImpl implements TypeTemplateService {
         }
 
         Page<TbTypeTemplate> page = (Page<TbTypeTemplate>) typeTemplateMapper.selectByExample(example);
+
+        // 缓存处理
+        saveToRedis();
+
         return new PageResult(page.getTotal(), page.getResult());
     }
-    
+
+    @Autowired
+    private RedisTemplate redisTemplate;
+
     /**
-     * 模板列表
+     * 将品牌列表与规格列表放入缓存
      */
-    @Override
-    public List<Map> selectOptionList() {
-        return typeTemplateMapper.selectOptionList();
+    private void saveToRedis() {
+        List<TbTypeTemplate> templateList = findAll();
+        for (TbTypeTemplate template : templateList) {
+            // 得到品牌列表
+            List brandList = JSON.parseArray(template.getBrandIds(), Map.class);
+            redisTemplate.boundHashOps("brandList").put(template.getId(), brandList);
+
+            // 得到规格列表
+            List<Map> specList = findSpecList(template.getId());
+            redisTemplate.boundHashOps("specList").put(template.getId(), specList);
+
+        }
+        System.out.println("缓存品牌列表");
+
     }
-    
-    /**
-     * 规格列表
-     */
+
+    @Autowired
+    private TbSpecificationOptionMapper specificationOptionMapper;
+
     @Override
     public List<Map> findSpecList(Long id) {
-        // 查询模板
+        // 根据ID查询到模板对象
         TbTypeTemplate typeTemplate = typeTemplateMapper.selectByPrimaryKey(id);
-        List<Map> list = JSON.parseArray(typeTemplate.getSpecIds(), Map.class);
-        for(Map map: list) {
-            // 查询规格选项列表
+        // 获得规格的数据spec_ids
+        String specIds = typeTemplate.getSpecIds();// [{"id":27,"text":"网络"},{"id":32,"text":"机身内存"}]
+        // 将specIds的字符串转成JSON的List<Map>
+        List<Map> list = JSON.parseArray(specIds, Map.class);
+        // 获得每条记录:
+        for (Map map : list) {
+            // 根据规格的ID 查询规格选项的数据:
+            // 设置查询条件:
             TbSpecificationOptionExample example = new TbSpecificationOptionExample();
             com.pinyougou.pojo.TbSpecificationOptionExample.Criteria criteria = example.createCriteria();
-            criteria.andSpecIdEqualTo( new Long( (Integer)map.get("id") ) );
-            List<TbSpecificationOption> options = specificationOptionMapper.selectByExample(example);
-            map.put("options", options);
+            criteria.andSpecIdEqualTo(new Long((Integer) map.get("id")));
+
+            List<TbSpecificationOption> specOptionList = specificationOptionMapper.selectByExample(example);
+
+            map.put("options", specOptionList);// {"id":27,"text":"网络",options:[{id：xxx,optionName:移动2G}]}
         }
-        
         return list;
+    }
+
+    @Override
+    public List<Map> selectOptionList() {
+        // TODO Auto-generated method stub
+        return null;
     }
 
 }
