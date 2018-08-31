@@ -1,5 +1,6 @@
 package com.pinyougou.page.service.impl;
 
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Writer;
@@ -9,9 +10,9 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.view.freemarker.FreeMarkerConfig;
 
-import com.alibaba.dubbo.config.annotation.Service;
 import com.pinyougou.mapper.TbGoodsDescMapper;
 import com.pinyougou.mapper.TbGoodsMapper;
 import com.pinyougou.mapper.TbItemCatMapper;
@@ -40,10 +41,10 @@ public class ItemPageServiceImpl implements ItemPageService {
 
     @Autowired
     private TbGoodsDescMapper goodsDescMapper;
-    
+
     @Autowired
     private TbItemCatMapper itemCatMapper;
-    
+
     @Autowired
     private TbItemMapper itemMapper;
 
@@ -56,11 +57,11 @@ public class ItemPageServiceImpl implements ItemPageService {
             // 1.获取商品表数据
             TbGoods goods = goodsMapper.selectByPrimaryKey(goodsId);
             dataModel.put("goods", goods);
-            
+
             // 2.获取商品扩展数据
             TbGoodsDesc goodsDesc = goodsDescMapper.selectByPrimaryKey(goodsId);
             dataModel.put("goodsDesc", goodsDesc);
-            
+
             // 3.商品分类
             String itemCat1 = itemCatMapper.selectByPrimaryKey(goods.getCategory1Id()).getName();
             String itemCat2 = itemCatMapper.selectByPrimaryKey(goods.getCategory2Id()).getName();
@@ -68,16 +69,16 @@ public class ItemPageServiceImpl implements ItemPageService {
             dataModel.put("itemCat1", itemCat1);
             dataModel.put("itemCat2", itemCat2);
             dataModel.put("itemCat3", itemCat3);
-            
+
             // 4.SKU列表
             TbItemExample example = new TbItemExample();
             Criteria criteria = example.createCriteria();
             criteria.andGoodsIdEqualTo(goodsId); // 指定SPU ID
             criteria.andStatusEqualTo("1"); // 状态为有效的
-            example.setOrderByClause("is_default desc"); //按照状态降序，保证第一个为默认
+            example.setOrderByClause("is_default desc"); // 按照状态降序，保证第一个为默认
             List<TbItem> itemList = itemMapper.selectByExample(example);
             dataModel.put("itemList", itemList);
-            
+
             Writer out = new FileWriter(pagedir + goodsId + ".html");
             template.process(dataModel, out);
             out.close();
@@ -86,6 +87,19 @@ public class ItemPageServiceImpl implements ItemPageService {
             e.printStackTrace();
             return false;
         }
+    }
+
+    @Override
+    public boolean deleteItemHtml(Long[] goodsIds) {        
+        try {
+            for(Long goodsId:goodsIds){
+                new File(pagedir+goodsId+".html").delete();
+            }
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }       
     }
 
 }
