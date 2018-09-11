@@ -29,7 +29,6 @@
 
     <!-- 引用dubbo 服务 -->
     <dubbo:application name="pinyougou-seckill-web" />
-    <dubbo:registry address="zookeeper://10.0.0.128:2181"/>
     <dubbo:annotation package="com.pinyougou.seckill.controller" />     
 
 </beans>
