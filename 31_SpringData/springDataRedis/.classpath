@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
+	<classpathentry kind="lib" path="lib/aopalliance.jar"/>
+	<classpathentry kind="lib" path="lib/aspectjrt.jar"/>
+	<classpathentry kind="lib" path="lib/aspectjweaver.jar"/>
+	<classpathentry kind="lib" path="lib/commons-logging-1.1.1.jar"/>
+	<classpathentry kind="lib" path="lib/commons-pool2-2.3.jar"/>
+	<classpathentry kind="lib" path="lib/jackson-annotations-2.8.0.jar"/>
+	<classpathentry kind="lib" path="lib/jackson-core-2.8.10.jar"/>
+	<classpathentry kind="lib" path="lib/jackson-databind-2.8.10.jar"/>
+	<classpathentry kind="lib" path="lib/jedis-2.7.2.jar" sourcepath="D:/develop/Java/jdk1.8.0_171/javafx-src.zip"/>
+	<classpathentry kind="lib" path="lib/spring-aop-4.2.0.RELEASE.jar"/>
+	<classpathentry kind="lib" path="lib/spring-aspects-4.2.0.RELEASE.jar"/>
+	<classpathentry kind="lib" path="lib/spring-beans-4.2.0.RELEASE.jar"/>
+	<classpathentry kind="lib" path="lib/spring-context-4.2.0.RELEASE.jar"/>
+	<classpathentry kind="lib" path="lib/spring-core-4.2.0.RELEASE.jar"/>
+	<classpathentry kind="lib" path="lib/spring-data-redis-1.6.0.RELEASE.jar"/>
+	<classpathentry kind="lib" path="lib/spring-expression-4.2.0.RELEASE.jar"/>
+	<classpathentry kind="lib" path="lib/spring-test-4.2.0.RELEASE.jar"/>
+	<classpathentry kind="lib" path="lib/spring-tx-4.2.0.RELEASE.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
