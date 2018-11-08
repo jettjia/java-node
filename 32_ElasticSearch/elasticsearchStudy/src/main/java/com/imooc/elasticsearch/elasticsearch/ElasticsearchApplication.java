@@ -144,7 +144,7 @@ public class ElasticsearchApplication {
         }
 
         RangeQueryBuilder rangeQuery = QueryBuilders.rangeQuery("word_count").from(gtWordCount);
-        if (ltWordCount !=null && ltWordCount > 0) {
+        if (ltWordCount != null && ltWordCount > 0) {
             rangeQuery.to(ltWordCount);
         }
         boolQuery.filter(rangeQuery);
@@ -160,7 +160,7 @@ public class ElasticsearchApplication {
         SearchResponse response = builder.get();
 
         List result = new ArrayList<Map<String, Object>>();
-        for(SearchHit hit : response.getHits()) {
+        for (SearchHit hit : response.getHits()) {
             result.add(hit.getSourceAsMap());
         }
         return new ResponseEntity(result, HttpStatus.OK);
