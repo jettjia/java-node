@@ -9,7 +9,10 @@ import java.util.concurrent.atomic.AtomicInteger;
  */
 public class VolatileNoAtomic extends Thread{
 	//private static volatile int count;
+    
+    // 使用原子性操作的类AtomicInteger
 	private static AtomicInteger count = new AtomicInteger(0);
+	
 	private static void addCount(){
 		for (int i = 0; i < 1000; i++) {
 			//count++ ;
@@ -24,7 +27,7 @@ public class VolatileNoAtomic extends Thread{
 	
 	public static void main(String[] args) {
 		
-		VolatileNoAtomic[] arr = new VolatileNoAtomic[100];
+		VolatileNoAtomic[] arr = new VolatileNoAtomic[10];
 		for (int i = 0; i < 10; i++) {
 			arr[i] = new VolatileNoAtomic();
 		}
